@@ -17,6 +17,5 @@ namespace TechChallenge.Application.Interfaces
 
         Task<List<CursoModel>> GetAll();
         Task<CursoModel> GetById(Guid id);
-        Task<List<CursoModel>> GetByIdProdessor(Guid id);
     }
 }

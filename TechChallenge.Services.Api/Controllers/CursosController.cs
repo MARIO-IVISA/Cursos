@@ -12,7 +12,7 @@ namespace TechChallenge.Services.Api.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-   // [Authorize(AuthenticationSchemes = "Bearer")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class CursosController : ControllerBase
     {
         private readonly ICursoAppService _cursosAppService;
@@ -82,27 +82,6 @@ namespace TechChallenge.Services.Api.Controllers
             catch (Exception ex)
             {
 
-                return StatusCode(500, new { ex.Message });
-            }
-        }
-
-        [HttpGet("Professor/{id}")]
-        public async Task<IActionResult> GetByIdProfessor(Guid id)
-        {
-            try
-            {
-                var curso = await _cursosAppService.GetByIdProdessor(id);
-                if (curso == null)
-                    return NoContent();
-
-                return StatusCode(200, curso);
-            }
-            catch (ArgumentException ex)
-            {
-                return StatusCode(400, new { ex.Message });
-            }
-            catch (Exception ex)
-            {
                 return StatusCode(500, new { ex.Message });
             }
         }

@@ -21,7 +21,6 @@ namespace TechChallenge.Domain.Entities
         #region Atributos
         private string? _nome;
         private string? _descricao;
-        private Guid? _idProfessor;
         private double? _media;
         private DateTime? _dataCurso;
         #endregion
@@ -29,7 +28,6 @@ namespace TechChallenge.Domain.Entities
         #region Propriedades
         public string? Nome { get => _nome; set => _nome = value; }
         public string? Descricao { get => _descricao; set => _descricao = value; }
-        public Guid? IdProfessor { get => _idProfessor; set => _idProfessor = value; }
         public double? Media { get => _media; set => _media = value; }
         public DateTime? DataCurso { get => _dataCurso; set => _dataCurso = value; }
 

@@ -49,11 +49,6 @@ namespace TechChallenge.Infra.Cache.MongoDb.Persistence
             var filter = Builders<CursoModel>.Filter.Eq(x => x.Id, idContato);
             return _mongoDBContext.Contatos.Find(filter).FirstOrDefault();
         }
-        public async Task<List<CursoModel>> GetByIdProfessor(Guid idProfessor)
-        {
-            var filter = Builders<CursoModel>.Filter.Eq(x => x.IdProfessor, idProfessor);
-            return _mongoDBContext.Contatos.Find(filter).ToList();
-        }
 
     }
 }

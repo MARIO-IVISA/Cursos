@@ -19,7 +19,5 @@ namespace TechChallenge.Infra.Cache.MongoDb.Models
         public DateTime? DataCurso { get; set; }
         [JsonProperty("media")]
         public double? Media { get; set; }
-        [JsonProperty("idProfessor")]
-        public Guid? IdProfessor { get; set; }
     }
 }

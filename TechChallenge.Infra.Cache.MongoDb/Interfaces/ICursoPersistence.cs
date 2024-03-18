@@ -14,6 +14,5 @@ namespace TechChallenge.Infra.Cache.MongoDb.Interfaces
         void Delete(CursoModel model);
         Task<List<CursoModel>> GetAll();
         Task<CursoModel> GetById(Guid idContato);
-        Task<List<CursoModel>> GetByIdProfessor(Guid idProfessor);
     }
 }

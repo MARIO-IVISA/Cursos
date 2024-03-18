@@ -53,9 +53,5 @@ namespace TechChallenge.Application.Services
             GC.SuppressFinalize(this);
         }
 
-        public async Task<List<CursoModel>> GetByIdProdessor(Guid id)
-        {
-           return await _cursoersistence.GetByIdProfessor(id);
-        }
     }
 }
