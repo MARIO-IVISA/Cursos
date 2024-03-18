@@ -8,9 +8,6 @@ using System.Threading.Tasks;
 
 namespace TechChallenge.Infra.Data.SqlServer.Contexts
 {
-    /// <summary>
-    /// Classe par aexecultar os comandos MIGRATIONS DO EntityFramework
-    /// </summary>
     public class SqlServerContextFactory : IDesignTimeDbContextFactory<SqlServerContext>
     {
         public SqlServerContext CreateDbContext(string[] args)
