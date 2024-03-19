@@ -1,7 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cursos
+spec:
+  selector:
+    app: cursos
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cursos-deployment
+  name: cursos
 spec:
   replicas: 1
   selector:
@@ -13,8 +26,95 @@ spec:
         app: cursos
     spec:
       containers:
-      - name: cursos
-        image: duarte3108/cursos
-        ports:
-        - containerPort: 80
+        - name: cursos
+          image: duarte3108/cursosfase05
+          ports:
+            - containerPort: 8080
+      volumes:
+        - name: sqldata-cursos
+          emptyDir: {}
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sqldata-cursos
+spec:
+  selector:
+    app: sqldata-cursos
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sqldata-cursos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sqldata-cursos
+  template:
+    metadata:
+      labels:
+        app: sqldata-cursos
+    spec:
+      containers:
+        - name: sqldata-cursos
+          image: mcr.microsoft.com/mssql/server:2019-latest
+          env:
+            - name: SA_PASSWORD
+              value: "BlindRio#"
+            - name: ACCEPT_EULA
+              value: "Y"
+          ports:
+            - containerPort: 1433
+          volumeMounts:
+            - name: sqldata-cursos
+              mountPath: /var/opt/mssql/data
+      volumes:
+        - name: sqldata-cursos
+          emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-cursos
+spec:
+  selector:
+    app: mongodb-cursos
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-cursos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb-cursos
+  template:
+    metadata:
+      labels:
+        app: mongodb-cursos
+    spec:
+      containers:
+        - name: mongodb-cursos
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-data
+              mountPath: /data/db
+      volumes:
+        - name: mongodb-data
+          emptyDir: {}

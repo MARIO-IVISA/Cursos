@@ -27,8 +27,17 @@ namespace TechChallenge.Services.Api.Controllers
         {
             try
             {
-                var curso = await _cursosAppService.Create(command);
-                return StatusCode(201, curso);
+                try
+                {
+                    var curso = await _cursosAppService.Create(command);
+                    return StatusCode(201, curso);
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
+             
             }
             catch (ValidationException ex)
             {

@@ -13,7 +13,7 @@ namespace TechChallenge.Infra.Data.SqlServer.Contexts
         public SqlServerContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<SqlServerContext>();
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Cursos;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"
+            optionsBuilder.UseSqlServer(@"Data Source=127.0.0.1,1433;Initial Catalog=Cursos;User ID= sa;Password=BlindRio#; Integrated Security=false; Encrypt=False;;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
 ); 
 
             return new SqlServerContext(optionsBuilder.Options);
